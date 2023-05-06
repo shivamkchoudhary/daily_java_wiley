@@ -1,0 +1,4 @@
+id,username,email,password,phone,address
+1,johndoe,johndoe@example.com,abc123,555-555-5555,123 Main St.
+2,janesmith,janesmith@example.com,xyz456,555-555-5556,456 Oak St.
+3,bobsmith,bobsmith@example.com,123abc,555-555-5557,789 Pine St.

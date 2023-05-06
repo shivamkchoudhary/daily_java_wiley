@@ -1,4 +1,4 @@
-package com.shivamkchoudhary.csvshopping;
+package AdminPackage;
 
 public class Product {
     private String name;
@@ -48,3 +48,4 @@ public class Product {
         return getName() + "," + getPrice() + "," + getDecription();
     }
 }
+

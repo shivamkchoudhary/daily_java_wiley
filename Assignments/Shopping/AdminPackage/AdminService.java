@@ -1,4 +1,5 @@
-package com.shivamkchoudhary.csvshopping;
+package AdminPackage;
+
 
 import java.io.*;
 import java.util.ArrayList;
@@ -8,26 +9,16 @@ import java.util.StringTokenizer;
 
 public class AdminService {
     private ArrayList<Product> products;
-    private ArrayList<Customer> customers;
+//    private ArrayList<Customer> customers;
     private String csvFilePath = "products.csv";
 
     public AdminService() {
         this.products = new ArrayList<Product>();
-        this.customers = new ArrayList<Customer>();
-//        createCsvFile();
-//        loadProductsFromCsv();
+//        this.customers = new ArrayList<Customer>();
+
     }
 
-//    private void createCsvFile() {
-//        try {
-//            FileWriter writer = new FileWriter(csvFilePath, true);
-//            PrintWriter printWriter = new PrintWriter(writer);
-////            printWriter.println("Product Name,Price,Description");
-//            printWriter.close();
-//        } catch (IOException e) {
-//            System.out.println("Error creating CSV file!");
-//        }
-//    }
+
 
     private void loadProductsFromCsv() {
         try {
@@ -35,16 +26,8 @@ public class AdminService {
             BufferedReader bufferedReader = new BufferedReader(reader);
 
             String line;
-//            List<Product> productList = new ArrayList<>();
             while ((line = bufferedReader.readLine()) != null) {
-//                if (!line.equals("Product Name,Price,Description")) {
-//                    String[] productData = line.split(",");
-//                    String name = productData[0];
-//                    double price = Double.parseDouble(productData[1].substring(1));
-//                    String description = productData[2];
-//                    Product product = new Product(name, price, description);
-//                    products.add(product);
-//                }
+              
                 StringTokenizer tokens = new StringTokenizer(line, ",");
                 String name = tokens.nextToken();
                 double price = Double.parseDouble(tokens.nextToken());
@@ -137,74 +120,87 @@ public class AdminService {
 
         System.out.println("Product not found!");
     }
+    public Product searchProduct(String name) {
 
-    public void addCustomer() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter customer name: ");
-        String name = sc.nextLine();
-        System.out.println("Enter customer email: ");
-        String email = sc.nextLine();
+        loadProductsFromCsv();
 
-        Customer customer = new Customer(name, email);
-        customers.add(customer);
-        System.out.println("Customer added successfully!");
-    }
-
-    public void removeCustomer() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter customer email to remove: ");
-        String email = sc.nextLine();
-
-        for (Customer customer : customers) {
-            if (customer.getEmail().equals(email)) {
-                customers.remove(customer);
-                System.out.println("Customer removed successfully!");
-                return;
+        for (Product product : products) {
+            if (product.getName().equals(name)) {
+                System.out.println(product.toString());
+                return product;
             }
         }
 
-        System.out.println("Customer not found!");
+        return null;
     }
 
-    public void editCustomerProfile() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter customer email to edit profile: ");
-        String email = sc.nextLine();
+//    public void addCustomer() {
+//        Scanner sc = new Scanner(System.in);
+//        System.out.println("Enter customer name: ");
+//        String name = sc.nextLine();
+//        System.out.println("Enter customer email: ");
+//        String email = sc.nextLine();
+//
+//        Customer customer = new Customer(name, email);
+//        customers.add(customer);
+//        System.out.println("Customer added successfully!");
+//    }
+//
+//    public void removeCustomer() {
+//        Scanner sc = new Scanner(System.in);
+//        System.out.println("Enter customer email to remove: ");
+//        String email = sc.nextLine();
+//
+//        for (Customer customer : customers) {
+//            if (customer.getEmail().equals(email)) {
+//                customers.remove(customer);
+//                System.out.println("Customer removed successfully!");
+//                return;
+//            }
+//        }
+//
+//        System.out.println("Customer not found!");
+//    }
 
-        for (Customer customer : customers) {
-            if (customer.getEmail().equals(email)) {
-                System.out.println("Enter new customer name: ");
-                String name = sc.nextLine();
-                System.out.println("Enter new customer email: ");
-                String newEmail = sc.nextLine();
-
-                // check if the new email already exists in the customer list
-                for (Customer c : customers) {
-                    if (c.getEmail().equals(newEmail)) {
-                        System.out.println("Email address already exists!");
-                        return;
-                    }
-                }
-
-                customer.setName(name);
-                customer.setEmail(newEmail);
-
-                System.out.println("Customer profile updated successfully!");
-                return;
-            }
-
-            System.out.println("Customer not found!");
-        }
-    }
-    public void viewCustomers() {
-        System.out.println("\n-- Customers --");
-        if (customers.isEmpty()) {
-            System.out.println("No customers found.");
-        } else {
-            for (Customer c : customers) {
-                System.out.println(c);
-            }
-        }
-    }
-
+//    public void editCustomerProfile() {
+//        Scanner sc = new Scanner(System.in);
+//        System.out.println("Enter customer email to edit profile: ");
+//        String email = sc.nextLine();
+//
+//        for (Customer customer : customers) {
+//            if (customer.getEmail().equals(email)) {
+//                System.out.println("Enter new customer name: ");
+//                String name = sc.nextLine();
+//                System.out.println("Enter new customer email: ");
+//                String newEmail = sc.nextLine();
+//
+//                // check if the new email already exists in the customer list
+//                for (Customer c : customers) {
+//                    if (c.getEmail().equals(newEmail)) {
+//                        System.out.println("Email address already exists!");
+//                        return;
+//                    }
+//                }
+//
+//                customer.setName(name);
+//                customer.setEmail(newEmail);
+//
+//                System.out.println("Customer profile updated successfully!");
+//                return;
+//            }
+//
+//            System.out.println("Customer not found!");
+//        }
+//    }
+//    public void viewCustomers() {
+//        System.out.println("\n-- Customers --");
+//        if (customers.isEmpty()) {
+//            System.out.println("No customers found.");
+//        } else {
+//            for (Customer c : customers) {
+//                System.out.println(c);
+//            }
+//        }
+//    }
+//
 }
