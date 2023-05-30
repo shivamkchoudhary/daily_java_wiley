@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="myServiceInstance" factory-bean="myServiceFactory" factory-method="createMyService"/>
+
+    <bean id="myServiceInstanceWithArgs" factory-bean="myServiceFactory" factory-method="createMyService">
+        <constructor-arg value="Hello World!"/>
+    </bean>
+
+    <bean id="myStaticServiceInstance" class="org.shivam.factorymethod.MyServiceFactory" factory-method="createMyStaticService"/>
+
+    <bean id="myStaticServiceInstanceWithArgs" class="org.shivam.factorymethod.MyServiceFactory" factory-method="createMyStaticService">
+        <constructor-arg value="Hello World from static factory!"/>
+    </bean>
+
+    <bean id="clientBean" class="org.shivam.factorymethod.CBeans">
+        <property name="myService" ref="myServiceInstance"/>
+        <property name="myServiceWithArgs" ref="myServiceInstanceWithArgs"/>
+        <property name="myStaticService" ref="myStaticServiceInstance"/>
+        <property name="myStaticServiceWithArgs" ref="myStaticServiceInstanceWithArgs"/>
+    </bean>
+
+    <bean id="myServiceFactory" class="org.shivam.factorymethod.MyServiceFactory"/>
+</beans>

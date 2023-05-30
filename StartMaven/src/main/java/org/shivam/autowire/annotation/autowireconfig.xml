@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+        xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xmlns:util="http://www.springframework.org/schema/util"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+		https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+		https://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/util
+		http://www.springframework.org/schema/util/spring-util.xsd">
+    <context:annotation-config />
+    <util:list list-class="java.util.LinkedList" id="phoneno">
+        <value>8610571051</value>
+        <value>2934642231</value>
+    </util:list>
+
+
+    <bean class="org.shivam.autowire.annotation.Address" name="address" id="address">
+        <property name="street" value="PK"/>
+        <property name="city" value="Chennai"/>
+    </bean>
+    <bean class="org.shivam.autowire.annotation.Address" name="address2" id="address2">
+        <property name="street" value="KP"/>
+        <property name="city" value="Bangalore"/>
+    </bean>
+    <bean class="org.shivam.autowire.annotation.Phones" name="phones1">
+        <property name="phoneNumbers" ref="phoneno">
+        </property>
+    </bean>
+    <bean class="org.shivam.autowire.annotation.Courses" name="courses1">
+        <property name="courseDetails">
+            <map>
+                <entry key="java" value="1 month" />
+                <entry key="python" value="2 month" />
+            </map>
+        </property>
+    </bean>
+    <bean class="org.shivam.autowire.annotation.Emp" name="emp1" autowire="constructor" />
+
+
+</beans>
