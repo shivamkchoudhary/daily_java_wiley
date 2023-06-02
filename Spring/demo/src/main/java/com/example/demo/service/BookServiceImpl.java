@@ -37,11 +37,11 @@ public class BookServiceImpl implements BookService{
 
     @Override
     public void deleteBookById(Long bookId) {
-
+        bookRepo.deleteById(bookId);
     }
 
     @Override
     public Book getBookByName(String bookName) {
-        return null;
+        return bookRepo.findByBookName(bookName);
     }
 }

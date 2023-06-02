@@ -5,8 +5,6 @@ import com.example.demo.model.Department;
 import com.example.demo.repo.DepRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -33,16 +31,29 @@ public class DepServiceImpl implements DepService {
 
     @Override
     public Department updateDepartment(Long departmentId, Department department) {
-        return null;
+        // get department by id
+        Department dep = depRepo.findById(departmentId).get();
+        // check for null values
+        if(department.getDepartmentName() != null && !"".equalsIgnoreCase(department.getDepartmentName())){
+            dep.setDepartmentName(department.getDepartmentName());
+        }
+        if(department.getDepartmentAddress() != null && !"".equalsIgnoreCase(department.getDepartmentAddress())){
+            dep.setDepartmentAddress(department.getDepartmentAddress());
+        }
+        if(department.getDepartmentCode() != null && !"".equalsIgnoreCase(department.getDepartmentCode())){
+            dep.setDepartmentCode(department.getDepartmentCode());
+        }
+        // save department
+        return depRepo.save(dep);
     }
 
     @Override
     public void deleteDepartmentById(Long departmentId) {
-
+        depRepo.deleteById(departmentId);
     }
 
     @Override
     public Department getDepartmentByName(String departmentName) {
-        return null;
+        return depRepo.findByDepartmentName(departmentName);
     }
 }

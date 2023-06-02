@@ -27,4 +27,20 @@ public class BookController {
     public List<Book> getAllBooks() {
         return bookService.getAllBooksList();
     }
+
+    @DeleteMapping("/book/{id}")
+    public void deleteBook(@PathVariable Long id) {
+        bookService.deleteBookById(id);
+        System.out.println("Book deleted successfully");
+    }
+
+    @GetMapping("/book/name/{name}")
+    public Book getBookByName(@PathVariable String name) {
+        return bookService.getBookByName(name);
+    }
+
+    @PutMapping("/book/{id}")
+    public Book updateBook(@PathVariable Long id, @RequestBody Book book) {
+        return bookService.updateBook(id, book);
+    }
 }
